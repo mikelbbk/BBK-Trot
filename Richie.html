@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Richie · Sub-4:00 Marathon Plan · 30 Aug 2026</title>
+  <link rel="stylesheet" href="styles/tokens.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--dark); line-height: 1.5; -webkit-font-smoothing: antialiased; }
+    .hero { background: var(--dark); padding: 3.5rem 1.5rem 3rem; }
+    .hero-inner { max-width: 960px; margin: 0 auto; }
+    .hero-eyebrow { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #4aad6f; margin-bottom: 0.65rem; }
+    .hero h1 { font-size: clamp(1.9rem, 4.5vw, 2.8rem); font-weight: 800; color: var(--white); line-height: 1.12; margin-bottom: 0.35rem; }
+    .hero h1 em { color: #4aad6f; font-style: normal; }
+    .hero-sub { color: var(--mid); font-size: 0.92rem; margin-bottom: 2.25rem; }
+    .stats-row { display: flex; flex-wrap: wrap; gap: 0.65rem; }
+    .stat { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 0.75rem 1.2rem; }
+    .stat-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-ghost); margin-bottom: 0.2rem; }
+    .stat-val { font-size: 1.25rem; font-weight: 800; color: var(--white); }
+    .stat-val.hi { color: #4aad6f; }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+    .section-label { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 0.9rem; }
+    .card { background: var(--white); border-radius: 14px; box-shadow: var(--shadow-sm); padding: 1.4rem 1.5rem; margin-bottom: 1.5rem; }
+    .pace-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); gap: 0.7rem; }
+    .pace-cell { background: var(--bg); border-radius: 8px; padding: 0.85rem 1rem; }
+    .pace-name { font-size: 0.63rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; color: var(--ink-soft); margin-bottom: 0.3rem; }
+    .pace-val { font-size: 1.05rem; font-weight: 700; color: var(--dark); }
+    .pace-note { font-size: 0.68rem; color: var(--ink-ghost); margin-top: 0.12rem; }
+    .notes-list { list-style: none; }
+    .notes-list li { display: flex; gap: 0.7rem; padding: 0.45rem 0; font-size: 0.83rem; color: var(--dark); border-bottom: 1px solid var(--bg); }
+    .notes-list li:last-child { border-bottom: none; }
+    .notes-list li::before { content: '—'; color: #4aad6f; font-weight: 700; flex-shrink: 0; }
+    .legend-row { display: flex; flex-wrap: wrap; gap: 0.45rem 1.1rem; }
+    .legend-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.77rem; color: var(--ink-soft); }
+    .rhythm-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.4rem; margin-top: 0.5rem; }
+    .rhythm-cell { background: var(--bg); border-radius: 6px; padding: 0.5rem 0.4rem; text-align: center; }
+    .rhythm-day { font-size: 0.58rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-ghost); margin-bottom: 0.25rem; }
+    .rhythm-type { font-size: 0.65rem; font-weight: 600; color: var(--dark); line-height: 1.3; }
+    .rhythm-cell.r-rest { background: #f8fafb; }
+    .rhythm-cell.r-rest .rhythm-type { color: var(--ink-ghost); }
+    .rhythm-cell.r-str  { background: #f0f4f7; }
+    .rhythm-cell.r-qual { background: #e8f5ee; }
+    .rhythm-cell.r-qual .rhythm-type { color: #1a5e35; }
+    .rhythm-cell.r-easy { background: #f0f5f0; }
+    .rhythm-cell.r-long { background: #e8f5ee; border: 1px solid #b2ddc2; }
+    .rhythm-cell.r-long .rhythm-type { color: #1a5e35; font-weight: 700; }
+    .phase-block { margin-bottom: 2.75rem; }
+    .phase-head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.5rem 0.9rem; margin-bottom: 1rem; padding-bottom: 0.7rem; border-bottom: 2px solid var(--bg); }
+    .phase-pill { display: inline-block; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.22rem 0.72rem; border-radius: 999px; }
+    .p-base     { background: #d8e9f4; color: #1f5070; }
+    .p-build    { background: #e8f5ee; color: #1a5e35; border: 1px solid #b2ddc2; }
+    .p-specific { background: #d4eddb; color: #155226; }
+    .p-peak     { background: var(--dark); color: #4aad6f; }
+    .phase-title { font-size: 1.12rem; font-weight: 700; color: var(--dark); }
+    .phase-note  { font-size: 0.8rem; color: var(--ink-soft); margin-left: auto; }
+    .wk { background: var(--white); border-radius: 12px; box-shadow: var(--shadow-sm); margin-bottom: 0.8rem; overflow: hidden; }
+    .wk-head { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem 0.9rem; padding: 0.65rem 1.1rem; background: var(--bg); border-bottom: 1px solid rgba(191,201,209,0.4); }
+    .wk-num { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-soft); }
+    .wk-dates { font-size: 0.87rem; font-weight: 600; color: var(--dark); }
+    .wk-tag.tag-step  { color: #2e6b42; background: #dff0e4; border-radius: 4px; padding: 0.1rem 0.45rem; font-style: normal; font-weight: 600; font-size: 0.62rem; }
+    .wk-tag.tag-rec   { color: #235a75; background: #ddeaf3; border-radius: 4px; padding: 0.1rem 0.45rem; font-style: normal; font-weight: 600; font-size: 0.62rem; }
+    .wk-tag.tag-peak  { color: #4aad6f; background: var(--dark); border-radius: 4px; padding: 0.1rem 0.45rem; font-style: normal; font-weight: 700; font-size: 0.62rem; }
+    .wk-tag.tag-taper { color: #155226; background: #d4eddb; border-radius: 4px; padding: 0.1rem 0.45rem; font-style: normal; font-weight: 600; font-size: 0.62rem; }
+    .wk-vol { margin-left: auto; font-size: 0.75rem; font-weight: 700; color: #1a5e35; background: #e8f5ee; border: 1px solid #b2ddc2; border-radius: 999px; padding: 0.13rem 0.62rem; white-space: nowrap; }
+    .wk-days { display: grid; grid-template-columns: repeat(7, 1fr); }
+    .day { padding: 0.8rem 0.65rem; border-right: 1px solid var(--bg); }
+    .day:last-child { border-right: none; }
+    .day-name { font-size: 0.56rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-ghost); margin-bottom: 0.4rem; }
+    .badge { display: inline-block; font-size: 0.53rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 0.1rem 0.38rem; border-radius: 3px; margin-bottom: 0.28rem; }
+    .b-easy     { background: #ddeaf3; color: #235a75; }
+    .b-long     { background: #e8f5ee; color: #1a5e35; border: 1px solid #b2ddc2; }
+    .b-mp       { background: #d4eddb; color: #155226; }
+    .b-tempo    { background: #c6e8d0; color: #0f3d1e; }
+    .b-int      { background: #b5e0c3; color: #0a2e16; }
+    .b-strength { background: #e4ebf0; color: #3a5a6e; }
+    .b-rest     { background: var(--bg); color: var(--ink-ghost); }
+    .b-race     { background: var(--dark); color: #4aad6f; }
+    .b-group    { background: #ddf0e6; color: #1a5e35; }
+    .day-text { font-size: 0.75rem; color: var(--dark); line-height: 1.35; }
+    .day-pace { font-size: 0.65rem; color: var(--ink-soft); margin-top: 0.18rem; line-height: 1.3; }
+    .t-str  { background: #f6f8fa; }
+    .t-long { background: #f0faf3; }
+    .t-rest { background: #f8fafb; }
+    .t-race { background: var(--dark); }
+    .t-race .day-name { color: rgba(154,173,184,0.55); }
+    .t-race .day-text { color: var(--white); font-size: 0.88rem; font-weight: 700; }
+    .t-race .day-pace { color: #4aad6f; }
+    .strategy-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); gap: 0.7rem; }
+    .strategy-cell { background: var(--bg); border-radius: 8px; padding: 0.85rem 1rem; }
+    .s-km { font-size: 0.63rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; color: var(--ink-soft); margin-bottom: 0.28rem; }
+    .s-pace { font-size: 1.05rem; font-weight: 700; color: var(--dark); }
+    .s-note { font-size: 0.68rem; color: var(--ink-ghost); margin-top: 0.1rem; }
+    .back-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.75rem; font-weight: 600; color: #4aad6f; text-decoration: none; margin-bottom: 1.5rem; }
+    footer { background: var(--dark); color: var(--mid); text-align: center; padding: 2.5rem 1.5rem; font-size: 0.8rem; line-height: 1.9; }
+    footer strong { color: #4aad6f; }
+    @media (max-width: 660px) {
+      .wk-days { grid-template-columns: 1fr; }
+      .day { display: grid; grid-template-columns: 2.5rem 1fr; column-gap: 0.7rem; align-items: start; border-right: none; border-bottom: 1px solid var(--bg); padding: 0.6rem 1rem; }
+      .day:last-child { border-bottom: none; }
+      .day-name { padding-top: 0.1rem; }
+      .phase-note { display: none; }
+      .rhythm-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    @media print { body { background: white; } .hero { -webkit-print-color-adjust: exact; print-color-adjust: exact; } .wk { break-inside: avoid; } }
+  </style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Marathon Training Plan · FIRST Method · Richie</p>
+    <h1>Break <em>4:00</em> on 30 August 2026</h1>
+    <p class="hero-sub">17 weeks · 4 May → 30 August · 3–4 runs per week · max 47 km/week</p>
+    <div class="stats-row">
+      <div class="stat"><p class="stat-label">Goal</p><p class="stat-val hi">3:59:59</p></div>
+      <div class="stat"><p class="stat-label">Goal Pace</p><p class="stat-val hi">5:41 /km</p></div>
+      <div class="stat"><p class="stat-label">Peak Week</p><p class="stat-val">47 km</p></div>
+      <div class="stat"><p class="stat-label">Long Run Peak</p><p class="stat-val">26 km</p></div>
+      <div class="stat"><p class="stat-label">Rest Days</p><p class="stat-val">Mon + Sun</p></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <a href="index.html" class="back-link">← All plans</a>
+
+  <section class="card">
+    <p class="section-label">Weekly Rhythm — Every Week</p>
+    <div class="rhythm-grid">
+      <div class="rhythm-cell r-rest"><p class="rhythm-day">Mon</p><p class="rhythm-type">Rest</p></div>
+      <div class="rhythm-cell r-str"><p class="rhythm-day">Tue</p><p class="rhythm-type">Strength 6am (run optional some weeks)</p></div>
+      <div class="rhythm-cell r-qual"><p class="rhythm-day">Wed</p><p class="rhythm-type">Quality run</p></div>
+      <div class="rhythm-cell r-str"><p class="rhythm-day">Thu</p><p class="rhythm-type">Strength 6am (run optional some weeks)</p></div>
+      <div class="rhythm-cell r-easy"><p class="rhythm-day">Fri</p><p class="rhythm-type">7 km group technical</p></div>
+      <div class="rhythm-cell r-long"><p class="rhythm-day">Sat</p><p class="rhythm-type">Long run</p></div>
+      <div class="rhythm-cell r-rest"><p class="rhythm-day">Sun</p><p class="rhythm-type">Rest</p></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <p class="section-label">Training Paces</p>
+    <div class="pace-grid">
+      <div class="pace-cell"><p class="pace-name">Marathon Pace (MP)</p><p class="pace-val">5:38–5:43 /km</p><p class="pace-note">Goal race pace — learn this feeling</p></div>
+      <div class="pace-cell"><p class="pace-name">Easy / Long Run</p><p class="pace-val">6:45–7:15 /km</p><p class="pace-note">Fully conversational — hold it back</p></div>
+      <div class="pace-cell"><p class="pace-name">Tempo / Threshold</p><p class="pace-val">5:10–5:20 /km</p><p class="pace-note">Comfortably hard — 20–40 min max</p></div>
+      <div class="pace-cell"><p class="pace-name">Intervals (VO2max)</p><p class="pace-val">4:55–5:05 /km</p><p class="pace-note">Hard effort — short reps only</p></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <p class="section-label">How This Plan Works</p>
+    <ul class="notes-list">
+      <li>Wednesday is the key quality day each week — intervals, tempo, or MP blocks. Friday (7 km technical) and Saturday (long run) are the other two fixed running days.</li>
+      <li>Monday and Sunday are full rest every week — no exceptions. These two recovery days are as important as any run.</li>
+      <li>Tuesday and Thursday always have outdoor strength at 6 am. On some weeks an afternoon run follows — these optional sessions are marked in the plan. Never skip strength to protect a PM run.</li>
+      <li>Friday is technical — form drills, strides, or light fartlek within the 7 km. It is deliberately short so Saturday's long run gets fresh legs. Don't push Friday.</li>
+      <li>Long runs alternate big / step-back every week. A big Saturday is always followed by a lighter one. No two hard long runs back-to-back.</li>
+      <li>From Week 8 onwards, practise race nutrition (gels/chews) on every long run over 90 min. Use the exact product you'll race with.</li>
+      <li>Optional tune-up half marathon: Week 7 (step-back week, long run is only 14 km). A great fitness check at this stage.</li>
+      <li>Taper madness is real — Weeks 15–17 you will feel sluggish and restless. That is adaptation. Trust it.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <p class="section-label">Session Types</p>
+    <div class="legend-row">
+      <span class="legend-item"><span class="badge b-easy">Easy</span> Aerobic easy run</span>
+      <span class="legend-item"><span class="badge b-long">Long</span> Long run</span>
+      <span class="legend-item"><span class="badge b-mp">MP</span> Marathon pace</span>
+      <span class="legend-item"><span class="badge b-tempo">Tempo</span> Threshold / tempo</span>
+      <span class="legend-item"><span class="badge b-int">Intervals</span> VO2max intervals</span>
+      <span class="legend-item"><span class="badge b-group">Group</span> Friday 7 km group loop</span>
+      <span class="legend-item"><span class="badge b-strength">Strength</span> Outdoor strength session</span>
+      <span class="legend-item"><span class="badge b-rest">Rest</span> Full rest</span>
+    </div>
+  </section>
+
+  <!-- ═══════ PHASE 1: BASE ═══════ -->
+  <div class="phase-block">
+    <div class="phase-head">
+      <span class="phase-pill p-base">Phase 1</span>
+      <span class="phase-title">Base</span>
+      <span class="phase-note">Weeks 1–5 · Establish the routine, introduce paces, long runs 10–14 km</span>
+    </div>
+
+    <div class="wk">
+      <div class="wk-head"><span class="wk-num">Week 1</span><span class="wk-dates">4–10 May</span><span class="wk-vol">27 km</span></div>
+      <div class="wk-days">
+        <div class="day t-rest"><p class="day-name">Mon</p><span class="badge b-rest">Rest</span><p class="day-text">Full rest</p></div>
+        <div class="day t-str"><p class="day-name">Tue</p><span class="badge b-strength">Strength</span><p class="day-text">Outdoor strength 6 am</p></div>
+        <div class="day"><p class="day-name">Wed</p><span class="badge b-easy">Easy</span><p class="day-text">10 km easy + 4×100m strides at end</p><p class="day-pace">7:00–7:10 /km</p></div>
+        <div class="day t-str"><p class="day-name">Thu</p><span class="badge b-strength">Strength</span><p class="day-text">Outdoor strength 6 am</p></div>
+        <div class="day"><p class="day-name">Fri</p><span class="badge b-group">Group</span><p class="day-text">7 km — easy effort, form drills, settle into the loop</p></div>
+        <div class="day t-long"><p class="day-name">Sat</p><span class="badge b-long">Long</span><p class="day-text">10 km easy</p><p class="day-pace">7:00 /km</p></div>
+        <div class="day t-rest"><p class="day-name">Sun</p><span class="badge b-rest">Rest</span><p class="day-text">Full rest</p></div>
+      </div>
+    </div>
+
+    <!-- W2 — Thu PM optional -->
+    <div class="wk">
+      <div class="wk-head"><span class="wk-num">Week 2</span><span class="wk-dates">11–17 May</span><span class="wk-vol">33 km</span></div>
+      <div class="wk-days">
+        <div class="day t-rest"><p class="day-name">Mon</p><span class="badge b-rest">Rest</span><p class="day-text">Full rest</p></div>
+        <div class="day t-str"><p class="day-name">Tue</p><span class="badge b-strength">Strength</span><p class="day-text">Outdoor strength 6 am</p></div>
+        <div class="day"><p class="day-name">Wed</p><span class="badge b-int">Intervals</span><p class="day-text">10 km — 1 km wu, 6×400m @5:00 /km (90s jog rec), 3 km cd</p><p class="day-pace">Intervals: 4:55–5:05 /km · first taste of speed work</p></div>
+        <div class="day t-str"><p class="day-name">Thu</p><span class="badge b-strength">Strength</span><br><span class="badge b-easy">Easy</span><p class="day-text">Outdoor strength 6 am · PM 5 km easy + 4×100m strides</p><p class="day-pace">Optional PM run · 7:00 /km</p></div>
+        <div class="day"><p class="day-name">Fri</p><span class="badge b-group">Group</span><p class="day-text">7 km easy — form drills, strides</p></div>
+        <div class="day t-long"><p class="day-name">Sat</p><span class="badge b-long">Long</span><p class="day-text">11 km easy</p><p class="day-pace">7:00 /km</p></div>
+        <div class="day t-rest"><p class="day-name">Sun</p><span class="badge b-rest">Rest</span><p class="day-text">Full rest</p></div>
+      </div>
+    </div>
+
+    <div class="wk">
+      <div class="wk-head"><span class="wk-num">Week 3</span><span class="wk-dates">18–24 May</span><span class="wk-tag tag-step">Step-back</span><span class="wk-vol">24 km</span></div>
+      <div class="wk-days">
+        <div class="day t-rest"><p class="day-name">Mon</p><span class="badge b-rest">Rest</span><p class="day-text">Full rest</p></div>
+        <div class="day t-str"><p class="day-name">Tue</p><span class="badge b-strength">Strength</span><p class="day-text">Outdoor strength 6 am</p></div>
+        <div class="day"><p class="day-name">Wed</p><span class="badge b-easy">Easy</span><p class="day-text">8 km easy — let the body adapt</p><p class="day-pace">7:05–7:15 /km</p></div>
+        <div class="day t-str"><p class="day-name">Thu</p><span class="badge b-strength">Strength</span><p class="day-text">Outdoor strength 6 am</p></div>
+        <div class="day"><p class="day-name">Fri</p><span class="badge b-group">Group</span><p class="day-text">7 km — 6× short hill sprints on any rise, jog back down</p></div>
+        <div class="day t-long"><p class="day-name">Sat</p><span class="badge b-long">Long</span><p class="day-text">9 km easy</p><p class="day-pace">7:00–7:10 /km</p></div>
+        <div class="day t-rest"><p class="day-name">Sun</p><span class="badge b-rest">Rest</span><p class="day-text">Full rest</p></div>
+      </div>
+    </div>
+
+    <div class="wk">
+      <div class="wk-head"><span class="wk-num">Week 4</span><span class="wk-dates">25–31 May</span><span class="wk-vol">32 km</span></div>
+      <div class="wk-days">
+        <div class="day t-rest"><p class="day-name">Mon</p><span class="badge b-rest">Rest</span><p class="day-text">Full rest</p></div>
+        <div class="day t-str"><p class="day-name">Tue</p><span class="badge b-strength">Strength</span><p class="day-text">Outdoor strength 6 am</p></div>
+        <div class="day"><p class="day-name">Wed</p><span class="badge b-tempo">Tempo</span><p class="day-text">12 km — 2 km easy, 6 km tempo, 4 km easy</p><p class="day-pace">Tempo: 5:12–5:18 /km · first threshold run</p></div>
+        <div class="day t-str"><p class="day-name">Thu</p><span class="badge b-strength">Strength</span><p class="day-text">Outdoor strength 6 am</p></div>
+        <div class="day"><p class="day-name">Fri</p><span class="badge b-group">Group</span><p class="day-text">7 km easy — easy before 13 km tomorrow</p></div>
+        <div class="day t-long"><p class="day-name">Sat</p><span class="badge b-long">Long</span><p class="day-text">13 km easy</p><p class="day-pace">6:55–7:05 /km</p></div>
+        <div class="day t-rest"><p class="day-name">Sun</p><span class="badge b-rest">Rest</span><p class="day-text">Full rest</p></div>
+      </div>
+    </div>
+
+    <div class="wk">
+      <div class="wk-head"><span class="wk-num">Week 5</span><span class="wk-dates">1–7 June</span><span class="wk-tag tag-rec">Recovery</span><span class="wk-vol">30 km</span></div>
+      <div class="wk-days">
+        <div class="day t-rest"><p class="day-name">Mon</p><span class="badge b-rest">Rest</span><p class="day-text">Full rest</p></div>
+        <div class="day t-str"><p class="day-name">Tue</p><span class="badge b-strength">Strength</span><p class="day-text">Outdoor strength 6 am</p></div>
+        <div class="day"><p class="day-name">Wed</p><span class="badge b-easy">Easy</span><p class="day-text">9 km easy + 6×100m strides</p><p class="day-pace">7:00–7:10 /km</p></div>
+        <div class="day t-str"><p class="day-name">Thu</p><span class="badge b-strength">Strength</span><p class="day-text">Outdoor strength 6 am</p></div>
+        <div class="day"><p class="day-name">Fri</p><span class="badge b-group">Group</span><p class="day-text">7 km easy — recovery week, no hard efforts</p></div>
+        <div class="day t-long"><p class="day-name">Sat</p><span class="badge b-long">Long</span><p class="day-text">14 km easy</p><p class="day-pace">7:00 /km</p></div>
+        <div class="day t-rest"><p class="day-name">Sun</p><span class="badge b-rest">Rest</span><p class="day-text">Full rest</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ PHASE 2: BUILD ═══════ -->
+  <div class="phase-block">
+    <div class="phase-head">
+      <span class="phase-pill p-build">Phase 2</span>
+      <span class="phase-title">Build</span>
+      <span class="phase-note">Weeks 6–9 · Tempo work, first 19 km run, alternating hard / step-back weeks</span>
+    </div>
+
+    <!-- W6 — Tue PM optional -->
+    <div class="wk">
+      <div class="wk-head"><span class="wk-num">Week 6</span><span class="wk-dates">8–14 June</span><span class="wk-vol">42 km</span></div>
+      <div class="wk-days">
+        <div class="day t-rest"><p class="day-name">Mon</p><span class="badge b-rest">Rest</span><p class="day-text">Full rest</p></div>
+        <div class="day t-str"><p class="day-name">Tue</p><span class="badge b-strength">Strength</span><br><span class="badge b-easy">Easy</span><p class="day-text">Outdoor strength 6 am · PM 6 km easy</p><p class="day-pace">Optional PM run · 7:00 /km</p></div>
+        <div class="day"><p class="day-name">Wed</p><span class="badge b-int">Intervals</span><p class="day-text">12 km — 1 km wu, 4×800m @5:00 /km (90s rec), 5 km cd</p><p class="day-pace">Intervals: 4:55–5:05 /km</p></div>
+        <div class="day t-str"><p class="day-name">Thu</p><span class="badge b-strength">Strength</span><p class="day-text">Outdoor strength 6 am</p></div>
+        <div class="day"><p class="day-name">Fri</p><span class="badge b-group">Group</span><p class="day-text">7 km easy — easy before 17 km tomorrow</p></div>
+        <div class="day t-long"><p class="day-name">Sat</p><span class="badge b-long">Long</span><p class="day-text">17 km easy</p><p class="day-pace">6:50–7:00 /km</p></div>
+        <div class="day t-rest"><p class="day-name">Sun</p><span class="badge b-rest">Rest</span><p class="day-text">Full rest</p></div>
+      </div>
+    </div>
+
+    <div class="wk">
+      <div class="wk-head"><span class="wk-num">Week 7</span><span class="wk-dates">15–21 June</span><span class="wk-tag tag-step">Step-back</span><span class="wk-vol">33 km</span></div>
+      <div class="wk-days">
+        <div class="day t-rest"><p class="day-name">Mon</p><span class="badge b-rest">Rest</span><p class="day-text">Full rest</p></div>
+        <div class="day t-str"><p class="day-name">Tue</p><span class="badge b-strength">Strength</span><p class="day-text">Outdoor strength 6 am</p></div>
+        <div class="day"><p class="day-name">Wed</p><span class="badge b-tempo">Tempo</span><p class="day-text">12 km — 2 km easy, 3 km tempo, 2 km easy, 3 km tempo, 2 km cd</p><p class="day-pace">Tempo: 5:10–5:18 /km</p></div>
+        <div class="day t-str"><p class="day-name">Thu</p><span class="badge b-strength">Strength</span><p class="day-text">Outdoor strength 6 am</p></div>
+        <div class="day"><p class="day-name">Fri</p><span class="badge b-group">Group</span><p class="day-text">7 km — 4×100m strides · lighter Sat allows a little push today</p></div>
+        <div class="day t-long"><p class="day-name">Sat</p><span class="badge b-long">Long</span><p class="day-text">14 km easy — optional tune-up half marathon this week</p><p class="day-pace">7:00 /km</p></div>
+        <div class="day t-rest"><p class="day-name">Sun</p><span class="badge b-rest">Rest</span><p class="day-text">Full rest</p></div>
+      </div>
+    </div>
+
+    <div class="wk">
+      <div class="wk-head"><span class="wk-num">Week 8</span><span class="wk-dates">22–28 June</span><span class="wk-vol">40 km</span></div>
+      <div class="wk-days">
+        <div class="day t-rest"><p class="day-name">Mon</p><span class="badge b-rest">Rest</span><p class="day-text">Full rest</p></div>
+        <div class="day t-str"><p class="day-name">Tue</p><span class="badge b-strength">Strength</span><p class="day-text">Outdoor strength 6 am</p></div>
+        <div class="day"><p class="day-name">Wed</p><span class="badge b-mp">MP</span><p class="day-text">14 km — 2 km easy, 8 km at MP, 4 km easy</p><p class="day-pace">MP: 5:38–5:43 /km · first long MP block</p></div>
+        <div class="day t-str"><p class="day-name">Thu</p><span class="badge b-strength">Strength</span><p class="day-text">Outdoor strength 6 am</p></div>
+        <div class="day"><p class="day-name">Fri</p><span class="badge b-group">Group</span><p class="day-text">7 km easy — 19 km tomorrow, protect the legs</p></div>
+        <div class="day t-long"><p class="day-name">Sat</p><span class="badge b-long">Long</span><p class="day-text">19 km easy — start fuelling every 45 min from km 10</p><p class="day-pace">6:50–7:00 /km</p></div>
+        <div class="day t-rest"><p class="day-name">Sun</p><span class="badge b-rest">Rest</span><p class="day-text">Full rest</p></div>
+      </div>
+    </div>
+
+    <div class="wk">
+      <div class="wk-head"><span class="wk-num">Week 9</span><span class="wk-dates">29 Jun – 5 Jul</span><span class="wk-tag tag-rec">Recovery</span><span class="wk-vol">30 km</span></div>
+      <div class="wk-days">
+        <div class="day t-rest"><p class="day-name">Mon</p><span class="badge b-rest">Rest</span><p class="day-text">Full rest</p></div>
+        <div class="day t-str"><p class="day-name">Tue</p><span class="badge b-strength">Strength</span><p class="day-text">Outdoor strength 6 am</p></div>
+        <div class="day"><p class="day-name">Wed</p><span class="badge b-easy">Easy</span><p class="day-text">9 km easy — absorb the build</p><p class="day-pace">7:00–7:10 /km</p></div>
+        <div class="day t-str"><p class="day-name">Thu</p><span class="badge b-strength">Strength</span><p class="day-text">Outdoor strength 6 am</p></div>
+        <div class="day"><p class="day-name">Fri</p><span class="badge b-group">Group</span><p class="day-text">7 km easy — no hard efforts this week</p></div>
+        <div class="day t-long"><p class="day-name">Sat</p><span class="badge b-long">Long</span><p class="day-text">14 km easy</p><p class="day-pace">7:00 /km</p></div>
+        <div class="day t-rest"><p class="day-name">Sun</p><span class="badge b-rest">Rest</span><p class="day-text">Full rest</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ PHASE 3: SPECIFIC ═══════ -->
+  <div class="phase-block">
+    <div class="phase-head">
+      <span class="phase-pill p-specific">Phase 3</span>
+      <span class="phase-title">Specific</span>
+      <span class="phase-note">Weeks 10–13 · Marathon pace dominates Wednesday, long runs to 22 km</span>
+    </div>
+
+    <!-- W10 — Thu PM optional -->
+    <div class="wk">
+      <div class="wk-head"><span class="wk-num">Week 10</span><span class="wk-dates">6–12 July</span><span class="wk-vol">43 km</span></div>
+      <div class="wk-days">
+        <div class="day t-rest"><p class="day-name">Mon</p><span class="badge b-rest">Rest</span><p class="day-text">Full rest</p></div>
+        <div class="day t-str"><p class="day-name">Tue</p><span class="badge b-strength">Strength</span><p class="day-text">Outdoor strength 6 am</p></div>
+        <div class="day"><p class="day-name">Wed</p><span class="badge b-int">Intervals</span><p class="day-text">13 km — 1 km wu, 5×800m @5:00 /km (90s rec), 5 km cd</p><p class="day-pace">Intervals: 4:55–5:05 /km</p></div>
+        <div class="day t-str"><p class="day-name">Thu</p><span class="badge b-strength">Strength</span><br><span class="badge b-easy">Easy</span><p class="day-text">Outdoor strength 6 am · PM 6 km easy</p><p class="day-pace">Optional PM run · 7:00 /km</p></div>
+        <div class="day"><p class="day-name">Fri</p><span class="badge b-group">Group</span><p class="day-text">7 km easy — 17 km tomorrow</p></div>
+        <div class="day t-long"><p class="day-name">Sat</p><span class="badge b-long">Long</span><p class="day-text">17 km easy</p><p class="day-pace">6:50–7:00 /km</p></div>
+        <div class="day t-rest"><p class="day-name">Sun</p><span class="badge b-rest">Rest</span><p class="day-text">Full rest</p></div>
+      </div>
+    </div>
+
+    <div class="wk">
+      <div class="wk-head"><span class="wk-num">Week 11</span><span class="wk-dates">13–19 July</span><span class="wk-tag tag-step">Step-back</span><span class="wk-vol">33 km</span></div>
+      <div class="wk-days">
+        <div class="day t-rest"><p class="day-name">Mon</p><span class="badge b-rest">Rest</span><p class="day-text">Full rest</p></div>
+        <div class="day t-str"><p class="day-name">Tue</p><span class="badge b-strength">Strength</span><p class="day-text">Outdoor strength 6 am</p></div>
+        <div class="day"><p class="day-name">Wed</p><span class="badge b-tempo">Tempo</span><p class="day-text">12 km — 2 km easy, 2×3 km tempo (2 min rest), 4 km cd</p><p class="day-pace">Tempo: 5:10–5:18 /km</p></div>
+        <div class="day t-str"><p class="day-name">Thu</p><span class="badge b-strength">Strength</span><p class="day-text">Outdoor strength 6 am</p></div>
+        <div class="day"><p class="day-name">Fri</p><span class="badge b-group">Group</span><p class="day-text">7 km — 4×1 km at threshold, 90s jog · lighter Sat allows this</p><p class="day-pace">Threshold: 5:10–5:18 /km</p></div>
+        <div class="day t-long"><p class="day-name">Sat</p><span class="badge b-long">Long</span><p class="day-text">14 km easy</p><p class="day-pace">7:00 /km</p></div>
+        <div class="day t-rest"><p class="day-name">Sun</p><span class="badge b-rest">Rest</span><p class="day-text">Full rest</p></div>
+      </div>
+    </div>
+
+    <div class="wk">
+      <div class="wk-head"><span class="wk-num">Week 12</span><span class="wk-dates">20–26 July</span><span class="wk-vol">42 km</span></div>
+      <div class="wk-days">
+        <div class="day t-rest"><p class="day-name">Mon</p><span class="badge b-rest">Rest</span><p class="day-text">Full rest</p></div>
+        <div class="day t-str"><p class="day-name">Tue</p><span class="badge b-strength">Strength</span><p class="day-text">Outdoor strength 6 am</p></div>
+        <div class="day"><p class="day-name">Wed</p><span class="badge b-mp">MP</span><p class="day-text">13 km — 2 km easy, 9 km at MP, 2 km easy · this should feel controlled</p><p class="day-pace">MP: 5:38–5:43 /km</p></div>
+        <div class="day t-str"><p class="day-name">Thu</p><span class="badge b-strength">Strength</span><p class="day-text">Outdoor strength 6 am</p></div>
+        <div class="day"><p class="day-name">Fri</p><span class="badge b-group">Group</span><p class="day-text">7 km easy — 22 km tomorrow, fully easy today</p></div>
+        <div class="day t-long"><p class="day-name">Sat</p><span class="badge b-long">Long</span><p class="day-text">22 km easy — gel every 40 min from km 10</p><p class="day-pace">6:50–7:00 /km</p></div>
+        <div class="day t-rest"><p class="day-name">Sun</p><span class="badge b-rest">Rest</span><p class="day-text">Full rest</p></div>
+      </div>
+    </div>
+
+    <!-- W13 — Tue PM optional -->
+    <div class="wk">
+      <div class="wk-head"><span class="wk-num">Week 13</span><span class="wk-dates">27 Jul – 2 Aug</span><span class="wk-tag tag-step">Step-back</span><span class="wk-vol">41 km</span></div>
+      <div class="wk-days">
+        <div class="day t-rest"><p class="day-name">Mon</p><span class="badge b-rest">Rest</span><p class="day-text">Full rest</p></div>
+        <div class="day t-str"><p class="day-name">Tue</p><span class="badge b-strength">Strength</span><br><span class="badge b-easy">Easy</span><p class="day-text">Outdoor strength 6 am · PM 6 km easy</p><p class="day-pace">Optional PM run · 7:00 /km</p></div>
+        <div class="day"><p class="day-name">Wed</p><span class="badge b-mp">MP</span><p class="day-text">12 km — 2 km easy, 5 km at MP, 5 km easy</p><p class="day-pace">MP: 5:38–5:43 /km · feel the race rhythm</p></div>
+        <div class="day t-str"><p class="day-name">Thu</p><span class="badge b-strength">Strength</span><p class="day-text">Outdoor strength 6 am</p></div>
+        <div class="day"><p class="day-name">Fri</p><span class="badge b-group">Group</span><p class="day-text">7 km — 4×1 km at MP, 90s rest · lighter Sat = fine</p><p class="day-pace">MP: 5:38–5:43 /km</p></div>
+        <div class="day t-long"><p class="day-name">Sat</p><span class="badge b-long">Long</span><p class="day-text">16 km easy</p><p class="day-pace">7:00 /km</p></div>
+        <div class="day t-rest"><p class="day-name">Sun</p><span class="badge b-rest">Rest</span><p class="day-text">Full rest</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ PHASE 4: PEAK + TAPER ═══════ -->
+  <div class="phase-block">
+    <div class="phase-head">
+      <span class="phase-pill p-peak">Phase 4</span>
+      <span class="phase-title">Peak &amp; Taper</span>
+      <span class="phase-note">Weeks 14–17 · Peak long run 26 km, then volume drops sharply — trust the taper</span>
+    </div>
+
+    <div class="wk">
+      <div class="wk-head"><span class="wk-num">Week 14</span><span class="wk-dates">3–9 August</span><span class="wk-tag tag-peak">Peak week</span><span class="wk-vol">47 km</span></div>
+      <div class="wk-days">
+        <div class="day t-rest"><p class="day-name">Mon</p><span class="badge b-rest">Rest</span><p class="day-text">Full rest</p></div>
+        <div class="day t-str"><p class="day-name">Tue</p><span class="badge b-strength">Strength</span><p class="day-text">Outdoor strength 6 am</p></div>
+        <div class="day"><p class="day-name">Wed</p><span class="badge b-mp">MP</span><p class="day-text">14 km — 2 km easy, 10 km at MP, 2 km easy — biggest MP block of the plan</p><p class="day-pace">MP: 5:38–5:43 /km</p></div>
+        <div class="day t-str"><p class="day-name">Thu</p><span class="badge b-strength">Strength</span><p class="day-text">Outdoor strength 6 am</p></div>
+        <div class="day"><p class="day-name">Fri</p><span class="badge b-group">Group</span><p class="day-text">7 km easy — 26 km tomorrow, fully easy today</p><p class="day-pace">Not the week to push Friday</p></div>
+        <div class="day t-long"><p class="day-name">Sat</p><span class="badge b-long">Long</span><p class="day-text">26 km — peak long run, all at easy pace · gel every 40 min from km 10</p><p class="day-pace">6:50–7:00 /km</p></div>
+        <div class="day t-rest"><p class="day-name">Sun</p><span class="badge b-rest">Rest</span><p class="day-text">Full rest — you've done the work</p></div>
+      </div>
+    </div>
+
+    <div class="wk">
+      <div class="wk-head"><span class="wk-num">Week 15</span><span class="wk-dates">10–16 August</span><span class="wk-tag tag-taper">Taper 1</span><span class="wk-vol">32 km</span></div>
+      <div class="wk-days">
+        <div class="day t-rest"><p class="day-name">Mon</p><span class="badge b-rest">Rest</span><p class="day-text">Full rest</p></div>
+        <div class="day t-str"><p class="day-name">Tue</p><span class="badge b-strength">Strength</span><p class="day-text">Outdoor strength 6 am — reduce load slightly</p></div>
+        <div class="day"><p class="day-name">Wed</p><span class="badge b-mp">MP</span><p class="day-text">12 km — 3 km easy, 4 km at MP, 5 km easy · keep sharpness, drop volume</p><p class="day-pace">MP: 5:38–5:43 /km</p></div>
+        <div class="day t-str"><p class="day-name">Thu</p><span class="badge b-strength">Strength</span><p class="day-text">Outdoor strength 6 am — reduce load slightly</p></div>
+        <div class="day"><p class="day-name">Fri</p><span class="badge b-group">Group</span><p class="day-text">7 km easy + 4×100m strides · legs should start feeling springy</p></div>
+        <div class="day t-long"><p class="day-name">Sat</p><span class="badge b-long">Long</span><p class="day-text">13 km easy</p><p class="day-pace">7:00 /km</p></div>
+        <div class="day t-rest"><p class="day-name">Sun</p><span class="badge b-rest">Rest</span><p class="day-text">Full rest</p></div>
+      </div>
+    </div>
+
+    <div class="wk">
+      <div class="wk-head"><span class="wk-num">Week 16</span><span class="wk-dates">17–23 August</span><span class="wk-tag tag-taper">Taper 2</span><span class="wk-vol">22 km</span></div>
+      <div class="wk-days">
+        <div class="day t-rest"><p class="day-name">Mon</p><span class="badge b-rest">Rest</span><p class="day-text">Full rest</p></div>
+        <div class="day t-str"><p class="day-name">Tue</p><span class="badge b-strength">Strength</span><p class="day-text">Light strength — mobility only, no heavy loading</p></div>
+        <div class="day"><p class="day-name">Wed</p><span class="badge b-easy">Easy</span><p class="day-text">8 km easy + 4×100m strides</p><p class="day-pace">7:00–7:10 /km — stay sharp, stay fresh</p></div>
+        <div class="day t-str"><p class="day-name">Thu</p><span class="badge b-strength">Strength</span><p class="day-text">Light strength — mobility focus</p></div>
+        <div class="day"><p class="day-name">Fri</p><span class="badge b-group">Group</span><p class="day-text">7 km easy with the group — enjoy it</p></div>
+        <div class="day t-long"><p class="day-name">Sat</p><span class="badge b-long">Long</span><p class="day-text">7 km easy — last run before race week</p><p class="day-pace">7:05–7:15 /km</p></div>
+        <div class="day t-rest"><p class="day-name">Sun</p><span class="badge b-rest">Rest</span><p class="day-text">Full rest</p></div>
+      </div>
+    </div>
+
+    <div class="wk">
+      <div class="wk-head"><span class="wk-num">Week 17</span><span class="wk-dates">24–30 August</span><span class="wk-tag tag-taper">Race week</span><span class="wk-vol">10 km + race</span></div>
+      <div class="wk-days">
+        <div class="day t-rest"><p class="day-name">Mon</p><span class="badge b-rest">Rest</span><p class="day-text">Full rest</p></div>
+        <div class="day t-str"><p class="day-name">Tue</p><span class="badge b-strength">Strength</span><p class="day-text">Very light — mobility only, 20 min max</p></div>
+        <div class="day"><p class="day-name">Wed</p><span class="badge b-easy">Easy</span><p class="day-text">5 km easy + 4×100m strides</p><p class="day-pace">Loose and light — no effort at all</p></div>
+        <div class="day t-rest"><p class="day-name">Thu</p><span class="badge b-rest">Rest</span><p class="day-text">Full rest — skip strength this week</p></div>
+        <div class="day"><p class="day-name">Fri</p><span class="badge b-easy">Easy</span><p class="day-text">5 km easy shake-out · skip group effort or just jog it</p><p class="day-pace">Very comfortable — shake the legs out</p></div>
+        <div class="day t-rest"><p class="day-name">Sat</p><span class="badge b-rest">Rest</span><p class="day-text">Complete rest — carb-load, hydrate, sleep well</p></div>
+        <div class="day t-race"><p class="day-name">Sun</p><span class="badge b-race">Race</span><p class="day-text">Marathon · 30 Aug 2026</p><p class="day-pace">Goal: 3:59:59 · 5:41 /km</p></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="card">
+    <p class="section-label">Race Day Strategy</p>
+    <div class="strategy-grid">
+      <div class="strategy-cell"><p class="s-km">Start (0–5 km)</p><p class="s-pace">5:46–5:50 /km</p><p class="s-note">Go out conservative — adrenaline will feel fast</p></div>
+      <div class="strategy-cell"><p class="s-km">First half (5–21 km)</p><p class="s-pace">5:40–5:43 /km</p><p class="s-note">Settle in. Fuel at km 10 and km 16</p></div>
+      <div class="strategy-cell"><p class="s-km">Middle (21–30 km)</p><p class="s-pace">5:40–5:43 /km</p><p class="s-note">Stay patient — this is where most races are lost</p></div>
+      <div class="strategy-cell"><p class="s-km">Finish (30–42 km)</p><p class="s-pace">5:35–5:40 /km</p><p class="s-note">Push from km 35 if legs allow — leave nothing behind</p></div>
+      <div class="strategy-cell"><p class="s-km">Halfway target</p><p class="s-pace">1:59:30–2:00:00</p><p class="s-note">Even split — don't bank time in the first half</p></div>
+      <div class="strategy-cell"><p class="s-km">Nutrition</p><p class="s-pace">Every 40–45 min</p><p class="s-note">Same gels you trained with — from km 8 onwards</p></div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <p><strong>Richie · Sub-4:00 Marathon Plan</strong> · FIRST Method · 4 May – 30 August 2026</p>
+  <p>Build smart, run consistent, trust the process. 3:59 is yours.</p>
+</footer>
+</body>
+</html>
